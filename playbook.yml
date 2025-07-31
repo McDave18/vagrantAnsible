@@ -1,0 +1,11 @@
+---
+- name: Generar archivo para partido de tenis
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  vars:
+    first_name: David
+    last_name: Huerta
+    city: Monterrey
+  roles:
+    - generador_partidos

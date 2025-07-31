@@ -1,0 +1,23 @@
+===============================================
+         🟦  INFORMACIÓN DEL PARTIDO  🟦
+===============================================
+
+🎾 TENISTA 1 (Asignado manualmente):
+------------------------------------
+🔹 Nombre      : David Huerta
+🔹 Ciudad      : Monterrey
+🔹 ID          : 180795
+
+🎾 TENISTA 2 (Generado aleatoriamente):
+---------------------------------------
+🔹 Nombre      : Johnni Hill
+🔹 Ciudad      : Dundalk
+🔹 ID          : 4891141T
+
+📅 FECHA Y HORA DEL PARTIDO (hora centro de México):
+----------------------------------------------------
+2025-07-31 15:46:29
+
+===============================================
+            ¡Que comience el juego!
+===============================================

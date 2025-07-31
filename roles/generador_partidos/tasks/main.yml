@@ -1,0 +1,77 @@
+# acceso a la api de tenistas
+---
+- name: Obtener datos aleatorios del segundo tenista
+  uri:
+    url: "https://randomuser.me/api/?results=1"
+    return_content: yes
+  register: json
+
+#Creación del archivo txt
+- name: Crear archivo .txt con los datos del partido
+  copy:
+    dest: "/vagrant/partidos.txt"
+    content: |
+      ===============================================
+               🟦  INFORMACIÓN DEL PARTIDO  🟦
+      ===============================================
+
+      🎾 TENISTA 1 (Asignado manualmente):
+      ------------------------------------
+      🔹 Nombre      : {{ first_name }} {{ last_name }}
+      🔹 Ciudad      : {{ city }}
+      🔹 ID          : {{ id }}
+
+      🎾 TENISTA 2 (Generado aleatoriamente):
+      ---------------------------------------
+      🔹 Nombre      : {{ (json.content | from_json).results[0].name.first }} {{ (json.content | from_json).results[0].name.last }}
+      🔹 Ciudad      : {{ (json.content | from_json).results[0].location.city }}
+      🔹 ID          : {{ (json.content | from_json).results[0].id.value | default('1041') }}
+
+      📅 FECHA Y HORA DEL PARTIDO (hora centro de México):
+      ----------------------------------------------------
+      {{ lookup('pipe', 'date "+%Y-%m-%d %H:%M:%S"') }}
+
+      ===============================================
+                  ¡Que comience el juego!
+      ===============================================
+
+#Creación del archivo html para visualización desde el navegador
+- name: Crear archivo HTML con los datos del partido
+  copy:
+    dest: "/vagrant/partidos.html"
+    content: |
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+          <meta charset="UTF-8">
+          <title>Partido de Tenis UNIR</title>
+          <style>
+              body { font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px; }
+              .card { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+              h1 { text-align: center; color: #003366; }
+              .tenista { margin-bottom: 20px; }
+              .label { font-weight: bold; }
+          </style>
+      </head>
+      <body>
+          <div class="card">
+              <h1>🎾 Información del Partido UNIR</h1>
+
+              <div class="tenista">
+                  <h2>Tenista 1 (manual)</h2>
+                  <p><span class="label">Nombre:</span> {{ first_name }} {{ last_name }}</p>
+                  <p><span class="label">Ciudad:</span> {{ city }}</p>
+                  <p><span class="label">ID:</span> {{ id }}</p>
+              </div>
+
+              <div class="tenista">
+                  <h2>Tenista 2 (aleatorio)</h2>
+                  <p><span class="label">Nombre:</span> {{ (json.content | from_json).results[0].name.first }} {{ (json.content | from_json).results[0].name.last }}</p>
+                  <p><span class="label">Ciudad:</span> {{ (json.content | from_json).results[0].location.city }}</p>
+                  <p><span class="label">ID:</span> {{ (json.content | from_json).results[0].id.value | default('1041') }}</p>
+              </div>
+
+              <p><span class="label">Fecha y Hora (hora centro de México):</span> {{ lookup('pipe', 'date "+%Y-%m-%d %H:%M:%S"') }}</p>
+          </div>
+      </body>
+      </html>
