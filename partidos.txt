@@ -10,13 +10,13 @@
 
 🎾 TENISTA 2 (Generado aleatoriamente):
 ---------------------------------------
-🔹 Nombre      : Johnni Hill
-🔹 Ciudad      : Dundalk
-🔹 ID          : 4891141T
+🔹 Nombre      : Wyatt Woods
+🔹 Ciudad      : Liverpool
+🔹 ID          : WL 71 99 49 E
 
 📅 FECHA Y HORA DEL PARTIDO (hora centro de México):
 ----------------------------------------------------
-2025-07-31 15:46:29
+2025-07-31 16:21:22
 
 ===============================================
             ¡Que comience el juego!
